@@ -23,7 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// Register a command to show the TodoPanel
 	let disposablePanel = vscode.commands.registerCommand('extension.showTodoPanel', () => {
 		const extensionUri = context.extensionUri; // Get the extension URI
-		TodoPanel.createOrShow(context); // Pass the extension URI
+		TodoPanel.createOrShow(); // Pass the extension URI
 	});
 
 	
