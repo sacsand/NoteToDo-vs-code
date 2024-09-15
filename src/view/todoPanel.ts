@@ -180,7 +180,7 @@ export class TodoPanel {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>To-Do List & Markdown Editor</title>
         <style>
-          body { display: flex; height: 100vh; margin: 0; }
+          body { display: flex; height: 100vh; margin: 0; font-family: Arial, sans-serif; }
           .panel { flex: 1; overflow: auto; padding: 10px; }
           .left { border-right: 1px solid #ddd; }
           .right { padding-left: 20px; }
@@ -188,7 +188,8 @@ export class TodoPanel {
           li { display: flex; align-items: center; padding: 5px 0; }
           li.completed span { text-decoration: line-through; color: grey; }
           button { margin-left: 10px; }
-          textarea { width: 100%; height: 100%; border: none; padding: 10px; box-sizing: border-box; }
+          textarea { width: 100%; height: 100%; border: none; padding: 10px; box-sizing: border-box; 
+                     background-color: #1e1e1e; color: #d4d4d4; } /* VS Code dark theme colors */
         </style>
       </head>
       <body>
@@ -202,10 +203,10 @@ export class TodoPanel {
           <h1>Markdown Editor</h1>
           <textarea id="editor"></textarea>
         </div>
-
+  
         <script>
           const vscode = acquireVsCodeApi();
-
+  
           function addTask() {
             const input = document.getElementById('newTask');
             const taskText = input.value;
@@ -217,21 +218,21 @@ export class TodoPanel {
               input.value = '';
             }
           }
-
+  
           function toggleTask(taskText) {
             vscode.postMessage({
               command: 'toggleTask',
               text: taskText
             });
           }
-
+  
           function deleteTask(taskText) {
             vscode.postMessage({
               command: 'deleteTask',
               text: taskText
             });
           }
-
+  
           function saveMarkdown() {
             const content = document.getElementById('editor').value;
             vscode.postMessage({
@@ -239,10 +240,10 @@ export class TodoPanel {
               content: content
             });
           }
-
+  
           window.addEventListener('message', event => {
             const message = event.data;
-
+  
             switch (message.command) {
               case 'loadTasks':
                 const ul = document.getElementById('tasks');
@@ -250,19 +251,19 @@ export class TodoPanel {
                 message.tasks.forEach(task => {
                   const li = document.createElement('li');
                   li.classList.toggle('completed', task.completed);
-
+  
                   const checkbox = document.createElement('input');
                   checkbox.type = 'checkbox';
                   checkbox.checked = task.completed;
                   checkbox.onchange = () => toggleTask(task.text);
-
+  
                   const span = document.createElement('span');
                   span.textContent = task.text;
-
+  
                   const deleteButton = document.createElement('button');
                   deleteButton.textContent = 'Delete';
                   deleteButton.onclick = () => deleteTask(task.text);
-
+  
                   li.appendChild(checkbox);
                   li.appendChild(span);
                   li.appendChild(deleteButton);
@@ -275,7 +276,7 @@ export class TodoPanel {
                 break;
             }
           });
-
+  
           // Save markdown content periodically
           setInterval(saveMarkdown, 5000);
         </script>
@@ -283,7 +284,8 @@ export class TodoPanel {
       </html>
     `;
   }
-}
+  }
+
 // import * as vscode from 'vscode';
 // import * as path from 'path';
 // import * as fs from 'fs';
