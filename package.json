@@ -1,6 +1,7 @@
 {
   "name": "todolist",
   "displayName": "TodoList",
+  "repository": "https://github.com/sacsand/NoteToDo-vs-code",
   "description": "",
   "version": "0.0.1",
   "engines": {

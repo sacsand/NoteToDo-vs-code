@@ -57,7 +57,7 @@ Contributions are welcome! Feel free to open an issue or submit a pull request o
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/sacsand/NoteToDo-vs-code/blob/develop/LICENSE) file for details.
 
 ---
 
